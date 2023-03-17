@@ -2,20 +2,18 @@ import styles from '@/styles/Home.module.scss';
 import Head from 'next/head'
 import NavbarPublic from "@/components/NavbarPublic";
 import Profile from '@/components/Profile';
-import users from '@/data/users';
 import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
-
+import users from '@/data/users';
 
 export default function Home() {
-  const [profileChosen, setprofileChosen] = useState('');
-
-  function handleProfileChosen(profile) {
-    setprofileChosen(profile)
-  }
-
-  
   const [scrolled, setScrolled] = useState(false);
+  const [activeProfileId, setactiveProfileId] = useState('');
+  const [currentPage, setCurrentPage] = useState('Home')
+
+  function handleactiveProfile(profile) {
+    setactiveProfileId(profile)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +24,6 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    console.log(scrolled)
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
@@ -34,12 +31,16 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home - Dilflix</title>
+        {activeProfileId === '' ?
+          <title>Dilflix</title>
+          :
+          <title>Home - Dilflix</title>}
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {profileChosen === ''
+      {activeProfileId === ''
         ? <div className={`${styles.chooseProfile} d-flex flex-column justify-content-center align-items-center`}>
           <div className='py-5 d-flex flex-column justify-content-center align-items-center'>
             <h1 className='text-center my-4 mx-1'>Who's watching?</h1>
@@ -47,7 +48,7 @@ export default function Home() {
               <ul className={styles.listProfile}>
                 {users.map(user => (
                   <li key={user.id}>
-                    <Profile name={user.name} profileChosen={handleProfileChosen} />
+                    <Profile name={user.name} profileChosen={handleactiveProfile} avatar={user.avatar} id={user.id} />
                   </li>
                 ))}
                 <li>
@@ -69,12 +70,14 @@ export default function Home() {
           </div>
         </div>
 
-        : <div className={`${styles.browse}`}>
-          <NavbarPublic name={profileChosen} scroll={scrolled}/>
+        :
+
+        <div className={`${styles.browse}`}>
+          <NavbarPublic id={activeProfileId} scroll={scrolled} currentPage={currentPage} />
           <main className={`mx-5`}>
-          pilih moviee
+            pilih moviee
           </main>
-          
+
         </div>}
 
 

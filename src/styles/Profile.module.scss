@@ -12,8 +12,16 @@
         max-height: 200px;
         width: 10vw;
         height: 10vw;
-        background: $primary2;
         border-radius: 4px;
+        box-sizing: border-box;
+
+        img {
+            border-radius: 4px;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+            
+        }
     }
 
     h6 {
@@ -34,7 +42,7 @@
 
 .profile:hover {
     .profileIcon {
-        border: 2.5px $secondary1 solid;
+        border: 3px $secondary1 solid;
     }
 
     h6 {
