@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import './ColorPalettes.module.scss';
+
+.profile {
+    border: none;
+    background:transparent;
+
+    .profileIcon {
+        min-width: 84px;
+        max-width: 200px;
+        min-height: 84px;
+        max-height: 200px;
+        width: 10vw;
+        height: 10vw;
+        background: $primary2;
+        border-radius: 4px;
+    }
+
+    h6 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 1.3vw;
+        color: $secondary2;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        h6{
+            font-size: 12px;
+        }
+        
+    }
+}
+
+.profile:hover {
+    .profileIcon {
+        border: 2.5px $secondary1 solid;
+    }
+
+    h6 {
+        color: $secondary1;
+    }
+}

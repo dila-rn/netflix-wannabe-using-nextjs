@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import './ColorPalettes.module.scss';
+
+.navbarContainer {
+    background-image: linear-gradient(to bottom, $primary1, rgba(0,0,0,0));
+    color: $secondary1;
+    transition: background-color 0.8s ease-out;
+
+    .logo{
+        color: $element2;
+        font-size: 2vw;
+    }
+
+    .nav{
+          .navLink{
+            margin-left: .5em;
+          }
+        }
+
+    a {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: $secondary1;
+        text-decoration: none;
+        margin: 0;
+        font-size: .9vw;
+    }
+
+    .navElement {
+        color: white;
+
+        a {
+            margin: 0 .8em;
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            margin: 0 .8em;
+            .triangle {
+                margin-left: 0.5em;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid $secondary1;
+                transition: all 0.3s 
+            }
+
+            .profileIcon {
+                width: 32px;
+                height: 32px;
+                background: $secondary2;
+                border-radius: 4px;
+            }
+        }
+
+        button:hover{
+            .triangle {
+                transform: rotate(180deg);
+            }
+        }
+
+    }
+}
+
+.navbarContainer.scrolled{
+    background: $primary1;
+    
+}

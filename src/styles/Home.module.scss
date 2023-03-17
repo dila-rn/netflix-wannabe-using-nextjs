@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import './ColorPalettes.module.scss';
+
+.chooseProfile {
+    min-height: 100vh;
+    background: $primary1;
+
+    h1,
+    h6
+    {
+        margin: 0;
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: $secondary1;
+        font-size: 3.5vw;
+    }
+
+    @media screen and (max-width: 768px) {
+        h1 {
+            font-size: 30px;
+        }
+    }
+
+    .listProfile {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: 0 1vw;
+        }
+    }
+
+    .addProfile {
+        color: $secondary2;
+        font-size: 7vw;
+
+        .addProfileIcon {
+            min-width: 84px;
+            max-width: 200px;
+            min-height: 84px;
+            max-height: 200px;
+            width: 10vw;
+            height: 10vw;
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 1.3vw;
+            color: $secondary2;
+            margin: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            h6 {
+                font-size: 12px;
+            }
+
+        }
+    }
+
+    .addProfile:hover {
+        .addProfileIcon{
+            background: $secondary1;
+            color: $secondary2;
+        }
+        
+        h6{
+            color: $secondary1;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .listProfile {
+            text-align: center;
+        }
+
+        .addProfile {
+            font-size: 50px;
+        }
+    }
+
+    .manageProfile {
+        margin: 2em 0;
+
+        button {
+            border: solid 1px $secondary2;
+            background: transparent;
+            color: $secondary2;
+            padding: 0.4em 1.5em;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 1.2vw;
+        }
+
+        button:hover {
+            border: solid 1px $secondary1;
+            color: $secondary1;
+        }
+
+        @media (max-width: 768px) {
+            button {
+                font-size: 12px;
+            }
+        }
+
+    }
+
+}
+
+.browse{
+    min-height: 200vh;
+    padding: 5em 0;
+    background: $primary2;
+}
