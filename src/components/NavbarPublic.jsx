@@ -64,12 +64,36 @@ export default function NavbarPublic(props) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className={`${styles.nav} ms-0`}>
-              <Nav.Link className={styles.navLink} onClick={handleHome} style={props.currentPage == 'Home' ? { fontWeight: '500' } : { fontWeight: '300' }}>Home</Nav.Link>
-              <Nav.Link className={styles.navLink} onClick={handleTVShow} style={props.currentPage == 'TVShow' ? { fontWeight: '500' } : { fontWeight: '300' }}>TV Shows</Nav.Link>
-              <Nav.Link className={styles.navLink} onClick={handleMovies} style={props.currentPage == 'Movies' ? { fontWeight: '500' } : { fontWeight: '300' }}>Movies</Nav.Link>
-              <Nav.Link className={styles.navLink} onClick={handleNews} style={props.currentPage == 'News' ? { fontWeight: '500' } : { fontWeight: '300' }}>News & Popular</Nav.Link>
-              <Nav.Link className={styles.navLink} onClick={handleMyList} style={props.currentPage == 'MyList' ? { fontWeight: '500' } : { fontWeight: '300' }}>My List</Nav.Link>
-              <Nav.Link className={styles.navLink} onClick={handleAudio} style={props.currentPage == 'Audio' ? { fontWeight: '500' } : { fontWeight: '300' }}>Browse by Language</Nav.Link>
+              {props.currentPage == 'Home'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Home</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleHome}>Home</Nav.Link>
+              }
+
+              {props.currentPage == 'TVShow'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>TV Show</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleTVShow}>TV Show</Nav.Link>
+              }
+
+              {props.currentPage == 'Movies'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Movies</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleMovies}>Movies</Nav.Link>
+              }
+
+              {props.currentPage == 'News'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>News & Popular</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleNews}>News & Popular</Nav.Link>
+              }
+
+              {props.currentPage == 'MyList'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>My List</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleMyList}>My List</Nav.Link>
+              }
+
+              {props.currentPage == 'Audio'
+                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Browse by Language</Nav.Link>
+                : <Nav.Link className={styles.navLink} onClick={handleAudio}>Browse by Language</Nav.Link>
+              }
+
             </Nav>
           </Navbar.Collapse>
         </div>
