@@ -8,64 +8,70 @@ import users from '@/data/users';
 import movies from '@/data/movies';
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
-  const [activeProfileId, setactiveProfileId] = useState('');
-  const [currentPage, setCurrentPage] = useState('Home')
+  const [activeProfileId, setactiveProfileId] = useState(null);
+  const [isProfileChosen, setIsProfileChosen] = useState(false);
+
 
   function handleactiveProfile(profile) {
     setactiveProfileId(profile)
-
+    sessionStorage.setItem('USER_PROFILE', profile);
+    setIsProfileChosen(true)
   }
-  const videoRef = useRef(null);
-
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
-
-  useEffect(() => {
-    videoRef.current = document.getElementById("previewVideo");
-    if (videoRef.current) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          console.log(entry.isIntersecting)
-          if (entry.isIntersecting) {
-            videoRef.current.play();
-          } else {
-            videoRef.current.pause();
-          }
-        },
-        {
-          threshold: 0.25
-        }
-      );
-
-      observer.observe(videoRef.current);
-
-      return () => {
-        observer.unobserve(videoRef.current);
-      };
+    let userProfile = sessionStorage.getItem('USER_PROFILE');
+    if (userProfile) {
+      setIsProfileChosen(true);
     }
   }, []);
+
+  //   const handleScroll = () => {
+  //     const isScrolled = window.scrollY > 0;
+  //     if (isScrolled !== scrolled) {
+  //       setScrolled(isScrolled);
+  //     }
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [scrolled]);
+
+  // const videoRef = useRef(null);
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current = document.getElementById("previewVideo");
+
+  //     const observer = new IntersectionObserver(
+  //       ([entry]) => {
+  //         if (entry.isIntersecting) {
+  //           videoRef.current.play();
+  //         } else {
+  //           videoRef.current.pause();
+  //         }
+  //       },
+  //       {
+  //         threshold: 0.25
+  //       }
+  //     );
+
+  //     observer.observe(videoRef.current);
+
+  //     return () => {
+  //       observer.unobserve(videoRef.current);
+  //     };
+  //   }
+  // }, [videoRef]);
 
   return (
     <>
       <Head>
-        {activeProfileId === '' ?
+        {!isProfileChosen ?
           <title>Dilflix</title>
           : <title>Home - Dilflix</title>}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {activeProfileId === ''
+      {!isProfileChosen
         ? <div className={`${styles.chooseProfile} d-flex flex-column justify-content-center align-items-center`}>
           <div className='py-5 d-flex flex-column justify-content-center align-items-center'>
             <h1 className='text-center my-4 mx-1'>Who&apos;s watching&#63;</h1>
@@ -94,7 +100,7 @@ export default function Home() {
           </div>
         </div>
         : <div className={`${styles.browse}`}>
-          <NavbarPublic id={activeProfileId} scroll={scrolled} currentPage={currentPage} />
+          <NavbarPublic currentPage='Home' />
           <main >
             <div className={`${styles.homePreviewContainer}`}>
               <div className={`${styles.content} d-flex justify-content-between align-items-end`}>

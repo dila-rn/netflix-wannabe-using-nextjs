@@ -8,56 +8,70 @@ import users from '@/data/users';
 export default function NavbarPublic(props) {
 
   const [avatarUrl, setavatarUrl] = useState()
-  const userId = props.id;
+  const [activeProfileId, setactiveProfileId] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const user = users.find(u => u.id === userId);
+    if (!sessionStorage.getItem('USER_PROFILE')) {
+      router.push('/browse');
+    }
+
+    let userProfile = parseInt(sessionStorage.getItem('USER_PROFILE'));
+    if (userProfile) {
+      setactiveProfileId(userProfile)
+    }
+
+    const user = users.find(u => u.id === userProfile);
     if (user) {
       setavatarUrl(user.avatar);
     } else {
-      console.log(`User with id ${userId} not found`);
+      console.log(`User with id ${userProfile} not found`);
     }
-  }, []);
 
+    if (typeof window !== 'undefined') {
+      window.onunload = function () {
+        sessionStorage.removeItem('USER_PROFILE');
+      }
+    }
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
-  const [activeLink, setactiveLink] = useState('Home');
-  const [activeUser, setActiveUser] = useState(props.user)
   const router = useRouter();
 
   function handleHome() {
-    setactiveLink(props.currentPage)
     router.push('/browse')
   }
 
   function handleTVShow() {
-    setactiveLink(props.currentPage)
     router.push('/browse/genre/1')
   }
 
   function handleMovies() {
-    setactiveLink(props.currentPage)
     router.push('/browse/genre/2')
   }
 
   function handleNews() {
-    setactiveLink(props.currentPage)
     router.push('/latest')
-
   }
 
   function handleMyList() {
-    setactiveLink(props.currentPage)
     router.push('/browse/my-list')
   }
 
   function handleAudio() {
-    setactiveLink(props.currentPage)
     router.push('/browse/original-audio')
   }
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" variant='dark' className={`${styles.navbarContainer} d-flex align-items-center justify-content-between fixed-top ${props.scroll && styles.scrolled}`}
+      <Navbar collapseOnSelect expand="md" variant='dark' className={`${styles.navbarContainer} d-flex align-items-center justify-content-between fixed-top ${scrolled && styles.scrolled}`}
       >
         <div className={`d-flex align-items-center`} >
           <Navbar.Toggle aria-controls="navbarPrimaryElement" className='me-3 my-3' />
@@ -88,7 +102,6 @@ export default function NavbarPublic(props) {
               <span className={styles.triangle}></span>
             </button>
           </div>
-
         </div>
 
         <div className={`${styles.secondaryElementSmall}`}>
@@ -101,7 +114,6 @@ export default function NavbarPublic(props) {
               <span className={styles.triangle}></span>
             </button>
           </div>
-
         </div>
 
       </Navbar>
