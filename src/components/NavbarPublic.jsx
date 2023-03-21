@@ -57,48 +57,26 @@ export default function NavbarPublic(props) {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" variant='dark' className={props.scroll ? `${styles.navbarContainer}  ${styles.scrolled} px-5 d-flex align-items-center justify-content-between fixed-top` : `${styles.navbarContainer} px-5 d-flex align-items-center justify-content-between fixed-top`}>
-
+      <Navbar collapseOnSelect expand="md" variant='dark' className={`${styles.navbarContainer} d-flex align-items-center justify-content-between fixed-top ${props.scroll && styles.scrolled}`}
+>
         <div className={`d-flex align-items-center`} >
-          <Navbar.Brand href="" className={`${styles.logo} me-4 fw-bold`}>DILFLIX</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className={`${styles.nav} ms-0`}>
-              {props.currentPage == 'Home'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Home</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleHome}>Home</Nav.Link>
-              }
-
-              {props.currentPage == 'TVShow'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>TV Show</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleTVShow}>TV Show</Nav.Link>
-              }
-
-              {props.currentPage == 'Movies'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Movies</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleMovies}>Movies</Nav.Link>
-              }
-
-              {props.currentPage == 'News'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>News & Popular</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleNews}>News & Popular</Nav.Link>
-              }
-
-              {props.currentPage == 'MyList'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>My List</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleMyList}>My List</Nav.Link>
-              }
-
-              {props.currentPage == 'Audio'
-                ? <Nav.Link disabled className={styles.navLink} style={{ fontWeight: '500', color: 'white' }}>Browse by Language</Nav.Link>
-                : <Nav.Link className={styles.navLink} onClick={handleAudio}>Browse by Language</Nav.Link>
-              }
-
+        <Navbar.Toggle aria-controls="navbarPrimaryElement" className='me-3 my-3'/>
+          <Navbar.Brand href="/" className= "me-4">
+            <img src="/static/images/dilflix.png" alt="dilflix-logo" className={`${styles.logo}`} />
+          </Navbar.Brand>
+          <Navbar.Collapse id="navbarPrimaryElement">
+            <Nav className={`${styles.nav}`}>
+              <a  className={`${styles.primaryElement}`} onClick={handleHome} aria-disabled={props.currentPage === 'Home'}>Home</a>
+              <a  className={`${styles.primaryElement}`} onClick={handleTVShow} aria-disabled={props.currentPage === 'TVShow'}>TV Show</a>
+              <a  className={`${styles.primaryElement}`} onClick={handleMovies} aria-disabled={props.currentPage === 'Movies'}>Movies</a>
+              <a  className={`${styles.primaryElement}`} onClick={handleNews} aria-disabled={props.currentPage === 'News'}>News & Popular</a>
+              <a  className={`${styles.primaryElement}`} onClick={handleMyList} aria-disabled={props.currentPage === 'MyList'}>My List</a>
+              <a  className={`${styles.primaryElement}`} onClick={handleAudio} aria-disabled={props.currentPage === 'Audio'}>Browse by Language</a>
             </Nav>
           </Navbar.Collapse>
         </div>
 
-        <div className={`${styles.navElement} d-flex align-items-center`}>
+        <div className={`${styles.secondaryElement} d-flex align-items-center`}>
           <a href="#home"><Icon icon="ic:baseline-search" width="24" height="24" /></a>
           <a href="#kids">Kids</a>
           <a href="#browseByLanguage"><Icon icon="mdi:bell-outline" width="24" height="24" /></a>

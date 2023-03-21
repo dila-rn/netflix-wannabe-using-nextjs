@@ -6,22 +6,14 @@
     background: $primary1;
 
     h1,
-    h6
-    {
+    h6 {
         margin: 0;
     }
 
     h1 {
-        font-family: 'Roboto', sans-serif;
         font-weight: 400;
         color: $secondary1;
-        font-size: 3.5vw;
-    }
-
-    @media screen and (max-width: 768px) {
-        h1 {
-            font-size: 30px;
-        }
+        font-size: calc(30px + 1.5vw);
     }
 
     .listProfile {
@@ -39,42 +31,33 @@
 
     .addProfile {
         color: $secondary2;
-        font-size: 7vw;
 
         .addProfileIcon {
             min-width: 84px;
-            max-width: 200px;
             min-height: 84px;
-            max-height: 200px;
             width: 10vw;
             height: 10vw;
             background: transparent;
             border-radius: 4px;
+            padding: 2vw;
+            font-size: 16rem;
         }
 
         h6 {
-            font-family: 'Roboto', sans-serif;
             font-weight: 400;
-            font-size: 1.3vw;
+            font-size: calc(12px + .5vw);
             color: $secondary2;
             margin: 0;
-        }
-
-        @media screen and (max-width: 768px) {
-            h6 {
-                font-size: 12px;
-            }
-
         }
     }
 
     .addProfile:hover {
-        .addProfileIcon{
+        .addProfileIcon {
             background: $secondary1;
             color: $secondary2;
         }
-        
-        h6{
+
+        h6 {
             color: $secondary1;
         }
     }
@@ -83,10 +66,6 @@
     @media (max-width: 768px) {
         .listProfile {
             text-align: center;
-        }
-
-        .addProfile {
-            font-size: 50px;
         }
     }
 
@@ -113,13 +92,110 @@
                 font-size: 12px;
             }
         }
-
     }
-
 }
 
-.browse{
+.browse {
     min-height: 200vh;
-    padding: 5em 0;
-    background: $primary2;
+    background: $primary1;
+
+    .homePreviewContainer {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+
+        video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, $primary1, transparent 50%);
+            z-index: 0;
+        }
+
+        .content {
+            position: absolute;
+            width: 100vw;
+            height: 75vh;
+            z-index: 1;
+
+            .description {
+                width: 35vw;
+                margin: 5rem 4vw 0 4vw;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 35vw;
+
+                img {
+                    width: 39vw;
+                    min-width: 400px;
+                    margin: 1.5rem 0;
+                }
+
+                .summary {
+                    font-size: calc(12px + .4vw);
+                    color: $secondary1;
+                    line-height: 1.7vw;
+                }
+
+                button {
+                    padding: 0 .8rem;
+                    margin: 0.4rem .8rem 0 0;
+                    border-radius: 4px;
+                    border: none;
+                }
+
+                .play {
+                    background: $secondary1;
+                    color: $primary1;
+                    font-size: calc(12px + .4vw);
+                    font-weight: 500;
+                }
+
+                .info {
+                    background: rgba($secondary1, .3);
+                    color: $secondary1;
+                    font-size: calc(12px + .4vw);
+                    font-weight: 500;
+                    padding: .3rem 1rem;
+                }
+
+                .iconPlay {
+                    font-size: calc(32px + 1vw);
+                }
+
+                .iconInfo {
+                    font-size: calc(32px + .5vw);
+                    color: white;
+                }
+            }
+
+            .rating {
+                background: rgba($primary1, .3);
+                border-left: 3px solid $secondary1;
+                padding: 0 .8rem;
+                color: $secondary1;
+                width: 7.5vw;
+                height: 2.5vw;
+                display: flex;
+                align-items: center;
+                font-size: calc(12px + .4vw);
+            }
+        }
+
+        @media(max-width: 768px) {
+            .content {
+                width: 90vw;
+            }
+        }
+    }
 }

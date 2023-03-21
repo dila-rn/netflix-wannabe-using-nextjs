@@ -7,9 +7,7 @@
 
     .profileIcon {
         min-width: 84px;
-        max-width: 200px;
         min-height: 84px;
-        max-height: 200px;
         width: 10vw;
         height: 10vw;
         border-radius: 4px;
@@ -20,29 +18,20 @@
             object-fit: cover;
             width: 100%;
             height: auto;
-            
         }
     }
 
     h6 {
-        font-family: 'Roboto', sans-serif;
         font-weight: 400;
-        font-size: 1.3vw;
+        font-size:calc(12px + .5vw);
         color: $secondary2;
         margin: 0;
-    }
-
-    @media screen and (max-width: 768px) {
-        h6{
-            font-size: 12px;
-        }
-        
     }
 }
 
 .profile:hover {
     .profileIcon {
-        border: 3px $secondary1 solid;
+        border: calc(2px + .1vw) $secondary1 solid;
     }
 
     h6 {

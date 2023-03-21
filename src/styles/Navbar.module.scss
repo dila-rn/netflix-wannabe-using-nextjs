@@ -3,30 +3,42 @@
 
 .navbarContainer {
     background-image: linear-gradient(to bottom, $primary1, rgba(0, 0, 0, 0));
+    padding: 1vw 4vw;
     color: $secondary1;
     transition: background-color 0.8s ease-out;
 
     .logo {
-        color: $element2;
-        font-size: 2vw;
+        width: 6vw;
+        min-width: 84px;
     }
 
     .nav {
-        .navLink {
-            margin-left: .5em;
+        .primaryElement {
+            margin: 0 0.5em 0 1.3rem;
+            color: $secondary1;
+        }
+
+        .primaryElement:hover {
+            cursor: pointer;
+            color: rgb(210, 210, 210);
+            transition: color .5s ease;
         }
     }
 
     a {
-        font-family: 'Roboto', sans-serif;
         font-weight: 300;
         color: $secondary1;
         text-decoration: none;
         margin: 0;
-        font-size: .9vw;
+        font-size: calc(5.5px + .55vw);
     }
 
-    .navElement {
+    a[aria-disabled="true"] {
+        font-weight: 500;
+        pointer-events: none;
+    }
+
+    .secondaryElement {
         color: white;
 
         a {
@@ -59,7 +71,6 @@
                     object-fit: cover;
                     width: 100%;
                     height: auto;
-                    
                 }
             }
         }
@@ -69,11 +80,9 @@
                 transform: rotate(180deg);
             }
         }
-
     }
 }
 
 .navbarContainer.scrolled {
     background: $primary1;
-
 }

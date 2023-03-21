@@ -5,6 +5,7 @@ import Profile from '@/components/Profile';
 import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
 import users from '@/data/users';
+import movies from '@/data/movies';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,9 +23,7 @@ export default function Home() {
         setScrolled(isScrolled);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
@@ -33,9 +32,7 @@ export default function Home() {
       <Head>
         {activeProfileId === '' ?
           <title>Dilflix</title>
-          :
-          <title>Home - Dilflix</title>}
-
+          : <title>Home - Dilflix</title>}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -62,27 +59,39 @@ export default function Home() {
               </ul>
             </div>
           </div>
-
           <div className={`${styles.manageProfile}`}>
             <button>
               Manage Profile
             </button>
           </div>
         </div>
-
-        :
-
-        <div className={`${styles.browse}`}>
+        : <div className={`${styles.browse}`}>
           <NavbarPublic id={activeProfileId} scroll={scrolled} currentPage={currentPage} />
-          <main className={`mx-5`}>
-            pilih moviee
+          <main >
+            <div className={`${styles.homePreviewContainer}`}>
+              <div className={`${styles.content} d-flex justify-content-between align-items-end`}>
+                <div className={`${styles.description}`}>
+                  <img src={movies[1].titleLogo}></img>
+                  <div>
+                    <p className={styles.summary}>{movies[1].summary}</p>
+                    <button className={styles.play}>
+                      <Icon icon="material-symbols:play-arrow-rounded" className={styles.iconPlay} inline='false' />
+                      <span className='me-3'>Play</span>
+                    </button>
+                    <button className={styles.info}>
+                      <Icon icon="material-symbols:info-outline-rounded" className={styles.iconInfo} inline='false' />
+                      <span> More Info </span></button>
+                  </div>
+                </div>
+                <div className={styles.rating}>
+                  {movies[1].rating}
+                </div>
+              </div>
+              <video src={movies[1].preview} poster={movies[1].thumbnail} autoPlay/>
+              <div className={styles.overlay}></div>
+            </div>
           </main>
-
         </div>}
-
-
-
-
     </>
   )
 }
