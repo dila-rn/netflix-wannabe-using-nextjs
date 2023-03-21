@@ -58,34 +58,50 @@ export default function NavbarPublic(props) {
   return (
     <>
       <Navbar collapseOnSelect expand="md" variant='dark' className={`${styles.navbarContainer} d-flex align-items-center justify-content-between fixed-top ${props.scroll && styles.scrolled}`}
->
+      >
         <div className={`d-flex align-items-center`} >
-        <Navbar.Toggle aria-controls="navbarPrimaryElement" className='me-3 my-3'/>
-          <Navbar.Brand href="/" className= "me-4">
+          <Navbar.Toggle aria-controls="navbarPrimaryElement" className='me-3 my-3' />
+          <Navbar.Brand href="/" className="me-4">
             <img src="/static/images/dilflix.png" alt="dilflix-logo" className={`${styles.logo}`} />
           </Navbar.Brand>
           <Navbar.Collapse id="navbarPrimaryElement">
             <Nav className={`${styles.nav}`}>
-              <a  className={`${styles.primaryElement}`} onClick={handleHome} aria-disabled={props.currentPage === 'Home'}>Home</a>
-              <a  className={`${styles.primaryElement}`} onClick={handleTVShow} aria-disabled={props.currentPage === 'TVShow'}>TV Show</a>
-              <a  className={`${styles.primaryElement}`} onClick={handleMovies} aria-disabled={props.currentPage === 'Movies'}>Movies</a>
-              <a  className={`${styles.primaryElement}`} onClick={handleNews} aria-disabled={props.currentPage === 'News'}>News & Popular</a>
-              <a  className={`${styles.primaryElement}`} onClick={handleMyList} aria-disabled={props.currentPage === 'MyList'}>My List</a>
-              <a  className={`${styles.primaryElement}`} onClick={handleAudio} aria-disabled={props.currentPage === 'Audio'}>Browse by Language</a>
+              <a className={`${styles.primaryElement}`} onClick={handleHome} aria-disabled={props.currentPage === 'Home'}>Home</a>
+              <a className={`${styles.primaryElement}`} onClick={handleTVShow} aria-disabled={props.currentPage === 'TVShow'}>TV Show</a>
+              <a className={`${styles.primaryElement}`} onClick={handleMovies} aria-disabled={props.currentPage === 'Movies'}>Movies</a>
+              <a className={`${styles.primaryElement}`} onClick={handleNews} aria-disabled={props.currentPage === 'News'}>News & Popular</a>
+              <a className={`${styles.primaryElement}`} onClick={handleMyList} aria-disabled={props.currentPage === 'MyList'}>My List</a>
+              <a className={`${styles.primaryElement}`} onClick={handleAudio} aria-disabled={props.currentPage === 'Audio'}>Browse by Language</a>
             </Nav>
           </Navbar.Collapse>
         </div>
 
-        <div className={`${styles.secondaryElement} d-flex align-items-center`}>
-          <a href="#home"><Icon icon="ic:baseline-search" width="24" height="24" /></a>
-          <a href="#kids">Kids</a>
-          <a href="#browseByLanguage"><Icon icon="mdi:bell-outline" width="24" height="24" /></a>
-          <button className='d-flex align-items-center'>
-            <span className={styles.profileIcon}>
-              <img src={avatarUrl} alt="" />
-            </span>
-            <span className={styles.triangle}></span>
-          </button>
+        <div className={`${styles.secondaryElement}`}>
+          <div className=' d-flex align-items-center'>
+            <a href="#home"><Icon icon="ic:baseline-search" width="24" height="24" /></a>
+            <a href="#kids">Kids</a>
+            <a href="#notification"><Icon icon="mdi:bell-outline" width="24" height="24" /></a>
+            <button className='d-flex align-items-center'>
+              <span className={styles.profileIcon}>
+                <img src={avatarUrl} alt="" />
+              </span>
+              <span className={styles.triangle}></span>
+            </button>
+          </div>
+
+        </div>
+
+        <div className={`${styles.secondaryElementSmall}`}>
+          <div className=' d-flex align-items-center'>
+            <a href="#home"><Icon icon="ic:baseline-search" width="24" height="24" /></a>
+            <button className='d-flex align-items-center'>
+              <span className={styles.profileIcon}>
+                <img src={avatarUrl} alt="" />
+              </span>
+              <span className={styles.triangle}></span>
+            </button>
+          </div>
+
         </div>
 
       </Navbar>

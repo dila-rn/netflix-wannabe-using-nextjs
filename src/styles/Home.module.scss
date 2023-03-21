@@ -29,6 +29,12 @@
         }
     }
 
+    @media (max-width: 768px) {
+        .listProfile {
+            text-align: center;
+        }
+    }
+
     .addProfile {
         color: $secondary2;
 
@@ -59,13 +65,6 @@
 
         h6 {
             color: $secondary1;
-        }
-    }
-
-
-    @media (max-width: 768px) {
-        .listProfile {
-            text-align: center;
         }
     }
 
@@ -130,13 +129,10 @@
             .description {
                 width: 35vw;
                 margin: 5rem 4vw 0 4vw;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
                 width: 35vw;
 
                 img {
-                    width: 39vw;
+                    width: 30vw;
                     min-width: 400px;
                     margin: 1.5rem 0;
                 }
@@ -144,7 +140,7 @@
                 .summary {
                     font-size: calc(12px + .4vw);
                     color: $secondary1;
-                    line-height: 1.7vw;
+                    line-height:calc(20px + .5vw);
                 }
 
                 button {
@@ -152,6 +148,7 @@
                     margin: 0.4rem .8rem 0 0;
                     border-radius: 4px;
                     border: none;
+                    width: calc(120px + 2vw);
                 }
 
                 .play {
@@ -166,7 +163,9 @@
                     color: $secondary1;
                     font-size: calc(12px + .4vw);
                     font-weight: 500;
-                    padding: .3rem 1rem;
+                    padding: .5rem 1rem;
+                    display: flex;
+                    align-items: center;
                 }
 
                 .iconPlay {
@@ -174,8 +173,9 @@
                 }
 
                 .iconInfo {
-                    font-size: calc(32px + .5vw);
+                    font-size: calc(22px + .5vw);
                     color: white;
+                    margin-right: .3rem;
                 }
             }
 
@@ -185,7 +185,9 @@
                 padding: 0 .8rem;
                 color: $secondary1;
                 width: 7.5vw;
+                min-width: fit-content;
                 height: 2.5vw;
+                min-height: 35px;
                 display: flex;
                 align-items: center;
                 font-size: calc(12px + .4vw);
@@ -195,6 +197,10 @@
         @media(max-width: 768px) {
             .content {
                 width: 90vw;
+
+                .description{
+                    width: 80vw;
+                }
             }
         }
     }

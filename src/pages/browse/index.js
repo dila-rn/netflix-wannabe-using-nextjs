@@ -14,6 +14,7 @@ export default function Home() {
 
   function handleactiveProfile(profile) {
     setactiveProfileId(profile)
+
   }
   const videoRef = useRef(null);
 
@@ -27,13 +28,14 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrolled]);
 
   useEffect(() => {
     videoRef.current = document.getElementById("previewVideo");
     if (videoRef.current) {
       const observer = new IntersectionObserver(
         ([entry]) => {
+          console.log(entry.isIntersecting)
           if (entry.isIntersecting) {
             videoRef.current.play();
           } else {
@@ -98,8 +100,8 @@ export default function Home() {
               <div className={`${styles.content} d-flex justify-content-between align-items-end`}>
                 <div className={`${styles.description}`}>
                   <img src={movies[1].titleLogo}></img>
-                  <div>
-                    <p className={styles.summary}>{movies[1].summary}</p>
+                  <p className={styles.summary}>{movies[1].summary}</p>
+                  <div className='d-flex'>
                     <button className={styles.play}>
                       <Icon icon="material-symbols:play-arrow-rounded" className={styles.iconPlay} inline='false' />
                       <span className='me-3'>Play</span>
