@@ -134,9 +134,8 @@
             z-index: 1;
 
             .description {
-                width: 35vw;
+                width: calc(500px + 1.5vw);
                 margin: 5rem 4vw 0 4vw;
-                width: 35vw;
 
                 img {
                     width: 30vw;
