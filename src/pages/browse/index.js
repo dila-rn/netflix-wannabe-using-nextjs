@@ -3,7 +3,7 @@ import Head from 'next/head'
 import NavbarPublic from "@/components/NavbarPublic";
 import Profile from '@/components/Profile';
 import { Icon } from '@iconify/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import users from '@/data/users';
 import movies from '@/data/movies';
 
@@ -15,6 +15,8 @@ export default function Home() {
   function handleactiveProfile(profile) {
     setactiveProfileId(profile)
   }
+  const videoRef = useRef(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +27,31 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
+
+  useEffect(() => {
+    videoRef.current = document.getElementById("previewVideo");
+    if (videoRef.current) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            videoRef.current.play();
+          } else {
+            videoRef.current.pause();
+          }
+        },
+        {
+          threshold: 0.25
+        }
+      );
+
+      observer.observe(videoRef.current);
+
+      return () => {
+        observer.unobserve(videoRef.current);
+      };
+    }
+  }, []);
 
   return (
     <>
@@ -87,7 +113,7 @@ export default function Home() {
                   {movies[1].rating}
                 </div>
               </div>
-              <video src={movies[1].preview} poster={movies[1].thumbnail} autoPlay/>
+              <video id='previewVideo' src={movies[1].preview} poster={movies[1].thumbnail} autoPlay />
               <div className={styles.overlay}></div>
             </div>
           </main>
