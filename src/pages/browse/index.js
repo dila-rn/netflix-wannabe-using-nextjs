@@ -66,7 +66,7 @@ export default function Home() {
       {activeProfileId === ''
         ? <div className={`${styles.chooseProfile} d-flex flex-column justify-content-center align-items-center`}>
           <div className='py-5 d-flex flex-column justify-content-center align-items-center'>
-            <h1 className='text-center my-4 mx-1'>Who&apos;s watching&quest;</h1>
+            <h1 className='text-center my-4 mx-1'>Who&apos;s watching&#63;</h1>
             <div >
               <ul className={styles.listProfile}>
                 {users.map(user => (
